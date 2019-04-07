@@ -1,0 +1,47 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>code playground</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/code_playground.css">
+	<script src="js/store.js"></script>
+</head>
+<body>
+	
+	<p class="title">Testing HTML tags' <span class="empha">default</span> behavior</p>
+
+	<div class="wrapper">
+		<div class="output_panel" id="anchor1">
+			<div class="header">Browser output &nbsp;<i class="fas fa-eye"></i></div>
+			<div class="rendered_html"></div>
+		</div><div class="input_panel">
+			<div class="header">
+				<div class="inputHTML triggered">HTML5</div> /
+				<div class="inputCSS">CSS3</div>
+				<i class="fas fa-eraser"></i>
+			</div>
+			<textarea name="" id="HTML_textarea" cols="30" rows="10" placeholder="Write some HTML codes here..."></textarea>
+			<textarea name="" id="CSS_textarea" cols="30" rows="10" class="hidden" placeholder="Write some CSS codes here..."></textarea>
+			<div class="input_tag">HTML5</div>
+		</div>
+		
+	</div>
+
+	<div class="button header"><i class="far fa-save"></i> save above code</div>
+	
+	<div class="select_title" id="anchor2">and you can load saved code from below:
+		<input type="text" placeholder="search..." id="keyword">
+		<i class="search_btn fas fa-search"></i>
+	</div>
+
+
+	<div class="select_template">
+
+	</div>
+
+
+	<script src="js/code_playground.js"></script>
+
+</body>
+</html>

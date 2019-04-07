@@ -1,0 +1,270 @@
+body{
+	background-color: #D7D7D7;
+	text-align: center;
+	padding-top: 10px;
+}
+
+.title{
+	color: white;
+	font-weight: bold;
+	font-size: 30px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+.empha{
+	color: white;
+	text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+}
+
+.input_panel, .output_panel{
+	display: inline-block;
+	/*width: 45%;*/
+	width: 380px;
+	height: 380px;
+	margin-right: 5px;
+	margin-left: 5px;
+	background-color: white;
+	vertical-align: top;
+	overflow: hidden;
+	margin-top: 10px;
+	position: relative;
+}
+
+.inputHTML, .inputCSS{
+	display: inline-block;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.inputHTML:hover, .inputCSS:hover{
+	cursor: pointer;
+	background-color: gray;
+	border-radius: 14px;
+
+}
+
+.inputHTML.triggered, .inputCSS.triggered{
+	color: gray;
+	cursor: initial;
+	background-color: #D2D2D2;
+	border-radius: 28px;
+}
+
+.fas.fa-eraser{
+	position: absolute;
+	right: 10px;
+	top: 5px;
+}
+
+.fas.fa-eraser:hover{
+	cursor: pointer;
+	color: rgb(255,148,148);
+}
+
+.header{
+	font-weight: bold;
+	font-size: 20px;
+	border-bottom: 8px solid #D7D7D7;
+	background-color: #F2F2F2;
+	color: #D7D7D7;
+}
+
+.output_panel .header{
+	background-color: gray;
+}
+
+
+textarea{
+	width: 99%;
+	height: 90%;
+	border:none;
+	resize: none;
+	font-size: 15px;
+	padding: 10px;
+	outline: none !important;
+	position: relative;
+	z-index: 10;
+	background-color: rgba(255,255,255,0);
+}
+
+textarea.hidden{
+	display: none;
+}
+
+.rendered_html{
+	width: 100%;
+	height: 93%;
+	text-align: initial;
+	/*padding: 10px*/
+}
+
+.input_tag{
+	position: absolute;
+	bottom: -28px;
+	right: -6px;
+	font-size: 80px;
+	font-weight: bold;
+	color:black;
+	opacity: 0.15;
+}
+
+.button{
+	width: 770px;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 0px;
+	margin-bottom: 8px;
+	margin-top: 7px;
+}
+
+.button:hover{
+	cursor: pointer;
+	background-color: white;
+	color: gray;
+	/*box-shadow: 0px 0px 1px 1px gray;*/
+}
+
+.select_title{
+	color: white;
+	font-size:18px; 
+	margin-bottom: 20px;
+	margin-top: 15px;
+	text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+}
+
+.search_btn:hover{
+	color: gray; 
+}
+.search_btn.pressed{
+	color: gray
+}
+
+
+.select_template{
+	width: 100%;
+}
+
+.select_title input{
+	background-color: rgba(0,0,0,0);
+	border-width: none;
+	border-style: none;
+	border-color: none;
+	border-image: none;
+	outline: none !important;
+	border-bottom: gray 1px solid;
+	width: 15%;
+	font-size: 18px;
+	color: gray;
+}
+
+.search_btn:hover{
+	cursor: pointer;
+}
+
+.template{
+	display: inline-block;
+/*	width: 30%;
+	height: 200px;*/
+	width: 400px;
+	height: 400px;
+	/*padding-left: 10px;*/
+	overflow: hidden;
+	zoom:0.5;
+
+	position: relative;
+
+	margin-right: 0.5%;
+	margin-left: 0.5%;
+	background-color: white;
+	vertical-align: top;
+	margin-bottom: 20px;
+	text-align: initial;
+}
+
+.preview{
+	width: 100%;
+	height: 100%;
+}
+
+.delete{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.template:hover{
+	box-shadow: 0px 0px 3px 3px gray;
+	cursor: pointer;
+}
+
+.delete_btn{
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	vertical-align: bottom;
+	color: white;
+	background-color: #D7D7D7;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.delete_btn:hover{
+	background-color: rgb(255,148,148);
+}
+
+/*.time_tag{
+	position: absolute;
+	top:1%;
+	right: 12%;
+	height: 10%;
+	text-align: center;
+	font-weight: bold;
+	color: #D7D7D7;
+	background-color: white;
+	position: absolute;
+}
+*/
+
+
+
+@media (max-width: 791px){
+
+	.output_panel, .input_panel, .button{
+		width: 80%;
+	}
+	
+	.header{
+		border-bottom: 0px;
+	}
+
+	.inputHTML.triggered, .inputCSS.triggered{
+		color: gray;
+		cursor: initial;
+		background-color: white;
+		border-radius: 14px 14px  0 0;
+		/*border-right: 1px gray solid;*/
+		/*border-left: 1px gray solid;*/
+		/*border-top: 1px gray solid;*/
+	}
+}
+
+@media(min-width: 1000px){
+	.select_template{
+		width: 1000px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+
+
+
+
+
+
+
