@@ -54,16 +54,20 @@ function save_above_code(){
 	store.set('saved_obj',saved_obj);
 }
 
-function overwrite_code(){
+function overwrite_code(key){
+	let str1 = document.querySelector("#HTML_textarea").value;
+	let str2 = document.querySelector("#CSS_textarea").value;
 
+	let obj = {
+		html_str : str1,
+		css_str : str2,
+		edit_info : ""
+	};
+
+	let saved_obj = store.get('saved_obj');
+	saved_obj[key] = obj;
+	store.set('saved_obj',saved_obj);
 }
-
-
-
-
-
-
-
 
 function make_load_box(obj, int){
 	var new_node = document.createElement("div");
@@ -96,6 +100,8 @@ function import_load(){
 	}
 }
 
+var current_key = 0;
+
 function activate_element(){
 	document.querySelector("body").innerHTML = document.querySelector("body").innerHTML;	
 
@@ -103,12 +109,55 @@ function activate_element(){
 			document.querySelector("#HTML_textarea").value = "";
 			document.querySelector("#CSS_textarea").value = "";
 			render_html();
+			current_key = undefined;
 	},false)
 
-	document.querySelector(".button").addEventListener("click",function(e){
+	document.querySelector(".button").addEventListener("click",function(e){	
+	if (current_key==undefined) {
 		save_above_code();
+		let str1 = document.querySelector("#HTML_textarea").value;
+		let str2 = document.querySelector("#CSS_textarea").value;
 		initialize();
+		document.querySelector("#HTML_textarea").value = str1;
+		document.querySelector("#CSS_textarea").value = str2;
 		render_html();
+	}else {
+		toggle_class(document.getElementById("save_mode"),"pop");
+		// overwrite_code();
+		// let str1 = document.querySelector("#HTML_textarea").value;
+		// let str2 = document.querySelector("#CSS_textarea").value;
+		// initialize();
+		// document.querySelector("#HTML_textarea").value = str1;
+		// document.querySelector("#CSS_textarea").value = str2;
+		// render_html();
+	}
+
+	document.getElementById("save_mode").onclick = function(e){
+		if (e.target.className == "description" || e.target.className == "fas fa-exclamation-circle") {
+			return
+		}
+		if (e.target.id == "as_new") {
+			current_key = 0;
+			save_above_code();
+			let str1 = document.querySelector("#HTML_textarea").value;
+			let str2 = document.querySelector("#CSS_textarea").value;
+			initialize();
+			document.querySelector("#HTML_textarea").value = str1;
+			document.querySelector("#CSS_textarea").value = str2;
+			render_html();
+
+		}else if (e.target.id == "rewrite") {
+			overwrite_code(current_key);
+			let str1 = document.querySelector("#HTML_textarea").value;
+			let str2 = document.querySelector("#CSS_textarea").value;
+			initialize();
+			document.querySelector("#HTML_textarea").value = str1;
+			document.querySelector("#CSS_textarea").value = str2;
+			render_html();
+		}
+		toggle_class(document.getElementById("save_mode"),"pop");
+	}
+		
 	},false);
 	document.querySelector("#HTML_textarea").addEventListener("input",function(e){
 		render_html();
@@ -135,6 +184,7 @@ function activate_element(){
 		document.querySelector(".input_tag").textContent = "HTML5";
 		document.querySelector("#HTML_textarea").focus();
 	},false);
+
 	document.querySelector(".inputCSS").addEventListener("click",function(e){
 
 		if (document.querySelector(".inputCSS").className.includes("triggered")){
@@ -156,44 +206,32 @@ function activate_element(){
 
 	let saved_obj_ar = document.querySelectorAll(".template");
 	for (var i = saved_obj_ar.length - 1; i >= 0; i--) {
-
 		saved_obj_ar[i].addEventListener("click",function(e){
 			if (e.target.className != "delete_btn") {
-				// document.querySelector("#HTML_textarea").value = this.querySelector(".preview").innerHTML;
-				// render_html();
+
 				e.preventDefault();
-				var key = get_key(this);
-				document.querySelector("#HTML_textarea").value = store.get("saved_obj")[key].html_str;
-				document.querySelector("#CSS_textarea").value = store.get("saved_obj")[key].css_str;
+				current_key = get_key(this);
+				document.querySelector("#HTML_textarea").value = store.get("saved_obj")[current_key].html_str;
+				document.querySelector("#CSS_textarea").value = store.get("saved_obj")[current_key].css_str;
 				render_html();
 				window.location.href="#anchor1";
 			}else if (e.target.className == "delete_btn"){
-
 				toggle_class(document.getElementById("confirm"),"pop");
-
 				var this_for_pass = this;
-
 				document.getElementById("confirm").onclick = function(e){
-
-
 					if (e.target.id == "confirm_true") {
 						var key = get_key(this_for_pass);
 						this_for_pass.remove();
+						current_key = undefined;
 						var buffer = store.get("saved_obj");
 						buffer.splice(key,1);
 						store.set("saved_obj",buffer);	
 					}
-					
+					if (e.target.className == "description" || e.target.className == "fas fa-exclamation-triangle"){
+						return;
+					}					
 					toggle_class(document.getElementById("confirm"),"pop");
 				}
-
-				// if(confirm("刪除代碼？")){
-				// 	var key = get_key(this);
-				// 	this.remove();
-				// 	var buffer = store.get("saved_obj");
-				// 	buffer.splice(key,1);
-				// 	store.set("saved_obj",buffer);					
-				// }
 			}
 		},false);
 	}
