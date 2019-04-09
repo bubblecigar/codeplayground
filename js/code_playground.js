@@ -54,6 +54,17 @@ function save_above_code(){
 	store.set('saved_obj',saved_obj);
 }
 
+function overwrite_code(){
+
+}
+
+
+
+
+
+
+
+
 function make_load_box(obj, int){
 	var new_node = document.createElement("div");
 	new_node.setAttribute("class","template");
@@ -86,7 +97,7 @@ function import_load(){
 }
 
 function activate_element(){
-	document.querySelector("body").innerHTML = document.querySelector("body").innerHTML;
+	document.querySelector("body").innerHTML = document.querySelector("body").innerHTML;	
 
 	document.querySelector(".fas.fa-eraser").addEventListener("click",function(e){
 			document.querySelector("#HTML_textarea").value = "";
@@ -157,13 +168,32 @@ function activate_element(){
 				render_html();
 				window.location.href="#anchor1";
 			}else if (e.target.className == "delete_btn"){
-				if(confirm("刪除代碼？")){
-					var key = get_key(this);
-					this.remove();
-					var buffer = store.get("saved_obj");
-					buffer.splice(key,1);
-					store.set("saved_obj",buffer);					
+
+				toggle_class(document.getElementById("confirm"),"pop");
+
+				var this_for_pass = this;
+
+				document.getElementById("confirm").onclick = function(e){
+
+
+					if (e.target.id == "confirm_true") {
+						var key = get_key(this_for_pass);
+						this_for_pass.remove();
+						var buffer = store.get("saved_obj");
+						buffer.splice(key,1);
+						store.set("saved_obj",buffer);	
+					}
+					
+					toggle_class(document.getElementById("confirm"),"pop");
 				}
+
+				// if(confirm("刪除代碼？")){
+				// 	var key = get_key(this);
+				// 	this.remove();
+				// 	var buffer = store.get("saved_obj");
+				// 	buffer.splice(key,1);
+				// 	store.set("saved_obj",buffer);					
+				// }
 			}
 		},false);
 	}

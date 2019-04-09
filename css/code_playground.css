@@ -4,6 +4,116 @@ body{
 	padding-top: 10px;
 }
 
+.popup{
+	position: fixed;
+	z-index: 99;
+	left:0;
+	top:0;
+	display:none;
+	flex-flow:  column wrap;
+	height: 100%;
+	width:100%;
+	justify-content:center;
+	align-items: center;
+	padding: 10px 0;
+	background-color: rgba(5,111,148,0.4);
+}
+.popup.pop{
+	display: flex;
+}
+
+.popup div{
+	border-radius: 5px;
+	text-align:center;
+	width: 40%;
+	min-width: 300px;
+	padding: 5px;
+	background-color: white;
+	margin-bottom: 10px;
+}
+
+.popup div:hover{
+/*	background-color:rgb(0,134,121);
+	color:white;*/
+	cursor:pointer;
+}
+
+.popup .description{
+	background: linear-gradient(135deg,rgba(5,111,148,0),rgba(5,111,148,1),rgba(5,111,148,0));
+	background-color: rgba(255,222,117,0.5);
+	color: white;
+	padding-top: 10px;
+	line-height: 1.5em;
+	padding-bottom: 10px;
+}
+.popup i::before{
+	margin-right: 0.5em;
+	color: paleturquoise;
+}
+.popup .wrapper:hover{
+	color: inherit;
+	cursor:initial;
+	display: flex;
+}
+.popup .wrapper{
+	all:unset;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 40%;
+	min-width: 300px;
+}
+.popup .wrapper div{
+	all:inherit;
+	min-width: 140px;
+	/*margin: 10px;*/
+	width: 48%;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	justify-content: center;
+	border-radius: 3px;
+	color: rgba(5,111,148,1);
+	background-color: floralwhite;
+}
+.popup .wrapper i::before{
+	color: rgba(5,111,148,1);
+}
+.popup .wrapper div:hover i::before, .popup .wrapper div:hover{
+	cursor: pointer;
+	color: coral;
+}
+#confirm_true::before{
+	content: "\f101";
+	font-weight:900;
+	font-family:"Font Awesome 5 Free";
+	margin-right: 1em;
+}
+#confirm_false::before{
+	content: "\f101";
+	font-weight:900;
+	font-family:"Font Awesome 5 Free";
+	margin-right: 1em;
+}
+
+#as_new::before{
+	content: "\f0fe";
+	font-weight:900;
+	font-family:"Font Awesome 5 Free";
+	margin-right: 1em;
+}
+#rewrite::before{
+	content: "\f573";
+	font-weight:900;
+	font-family:"Font Awesome 5 Free";
+	margin-right: 1em;
+}
+#dont_save::before{
+	content: "\f05e";
+	font-weight:900;
+	font-family:"Font Awesome 5 Free";
+	margin-right: 1em;
+}
+
 .title{
 	color: white;
 	font-weight: bold;
