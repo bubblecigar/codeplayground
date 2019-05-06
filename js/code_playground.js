@@ -18,8 +18,39 @@ function scoping_CSS_str(input_css,scope_class){
 	return str
 }
 
+function activate_keyframes(str){
+
+	if (!str.includes('@keyframe')) {return}
+
+	// find all keyframes
+	let i=0;
+	let ar=[];
+	while (str.indexOf('@keyframes',i)!=-1) {
+		ar.push(str.indexOf('@keyframes',i));
+		i=str.indexOf('@keyframes',i)+1;
+	}
+	let keyStr=[];
+	
+	for(let z=0;z<ar.length;z++){
+		let c=str.indexOf('{',ar[z]);
+		let stack=1;		
+		while(stack>0){
+			c++
+			if (str[c]==='{') {
+				stack++;
+			}
+			else if (str[c]==='}') {
+				stack--;
+			}
+		}
+		keyStr.push(str.slice(ar[z],c+1));		
+	}
+	document.querySelector('head style').innerHTML = keyStr.join(' ');
+}
+
 function render_html(){
 	document.querySelector(".rendered_html").innerHTML = get_input();
+	activate_keyframes(get_input());
 }
 
 function initialize(){
@@ -123,7 +154,7 @@ function activate_element(){
 		render_html();
 	}else {
 		toggle_class(document.getElementById("save_mode"),"pop");
-		// overwrite_code();
+		// overwrite_code(current_key);
 		// let str1 = document.querySelector("#HTML_textarea").value;
 		// let str2 = document.querySelector("#CSS_textarea").value;
 		// initialize();
@@ -159,6 +190,7 @@ function activate_element(){
 	}
 		
 	},false);
+	
 	document.querySelector("#HTML_textarea").addEventListener("input",function(e){
 		render_html();
 	},false);
@@ -273,10 +305,6 @@ function filter(keyword){
 	}
 }
 
-
-
-
-
 function get_key(node){
 
 	var mother_node  = document.querySelector(".select_template");
@@ -288,25 +316,6 @@ function get_key(node){
 	}
 }
 
-// function update_store(){
-// 	let saved_obj_ar = document.querySelectorAll(".template .preview");
-// 	let saved_obj = [];
-// 	for (var i = saved_obj_ar.length - 1; i >= 0; i--) {
-// 		let obj = {
-
-// 		};
-// 		saved_obj.push(saved_obj_ar[i].innerHTML);
-// 	}
-// 	saved_obj = saved_obj.reverse();
-// 	store.set('saved_obj',saved_obj);
-// }
-
-
-// function refresh_page(){
-// 	// update_store();
-// 	activate_element();
-// 	render_html();
-// }
 
 function toggle_class (node, targetClass){
 	var classArray = node.className.split(" ");
