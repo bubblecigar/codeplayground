@@ -25,9 +25,11 @@ function activate_keyframes(str){
 	// find all keyframes
 	let i=0;
 	let ar=[];
-	while (str.indexOf('@keyframes',i)!=-1) {
+	let err = 0;
+	while (str.indexOf('@keyframes',i)!=-1 || err<100) {
 		ar.push(str.indexOf('@keyframes',i));
 		i=str.indexOf('@keyframes',i)+1;
+		err++;
 	}
 	let keyStr=[];
 	
