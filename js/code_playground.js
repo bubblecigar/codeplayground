@@ -26,13 +26,12 @@ function activate_keyframes(str){
 	let i=0;
 	let ar=[];
 	let err = 0;
-	while (str.indexOf('@keyframes',i)!=-1 || err<100) {
+	while (str.indexOf('@keyframes',i)!=-1 && err<100) {
 		ar.push(str.indexOf('@keyframes',i));
 		i=str.indexOf('@keyframes',i)+1;
 		err++;
 	}
 	let keyStr=[];
-	
 	for(let z=0;z<ar.length;z++){
 		let c=str.indexOf('{',ar[z]);
 		let stack=1;		
@@ -52,7 +51,8 @@ function activate_keyframes(str){
 
 function render_html(){
 	document.querySelector(".rendered_html").innerHTML = get_input();
-	activate_keyframes(get_input());
+	var input_css = document.querySelector("#CSS_textarea").value;
+	activate_keyframes(input_css);
 }
 
 function initialize(){
